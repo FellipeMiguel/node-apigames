@@ -30,8 +30,11 @@ A API estará disponível em http://localhost:8080.
 
 ## Rotas da API
 
-- GET /games: Retorna uma lista de jogos.
-- GET /games/:id: Retorna detalhes de um jogo específico com o ID fornecido.
+- GET /games Retorna uma lista de jogos.
+- GET /game/:id Retorna detalhes de um jogo específico com o ID fornecido.
+- POST /game/ Cria um jogo.
+- DELETE /game/:id Deleta um jogo específico com o ID fornecido.
+- PUT /game/:id Edita um jogo específico com o ID fornecido.
 
 ## Uso
 
