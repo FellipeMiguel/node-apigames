@@ -1,4 +1,5 @@
 const express = require('express');
+const e = require("express");
 const app = express();
 
 app.use(express.urlencoded({extended: false}));
@@ -32,7 +33,7 @@ app.get('/games', (req, res) => {
     res.json(DB.games);
 });
 
-app.get('/games/:id', (req, res) => {
+app.get('/game/:id', (req, res) => {
     if (isNaN(req.params.id)) {
         res.sendStatus(400);
     } else {
@@ -46,7 +47,35 @@ app.get('/games/:id', (req, res) => {
             res.sendStatus(404);
         }
     }
-})
+});
+
+app.post('/game', (req, res) => {
+    const {title, price, year} = req.body;
+    DB.games.push({
+        id: 28,
+        title,
+        price,
+        year
+    });
+
+    res.sendStatus(200);
+});
+
+app.delete('/game/:id', (req, res) =>{
+    if (isNaN(req.params.id)) {
+        res.sendStatus(400);
+    } else {
+        const id = parseInt(req.params.id);
+        const index = DB.games.findIndex(game => game.id == id);
+
+        if (index == -1) {
+            res.sendStatus(404);
+        } else {
+            DB.games.splice(index, 1);
+            res.sendStatus(200);
+        }
+    }
+});
 
 app.listen(8080, () => {
     console.log('Server is running on port 8080');
